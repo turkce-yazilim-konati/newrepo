@@ -11,14 +11,6 @@
       padding: 20px;
     }
 
-    h3:has(b) {
-      font-weight: 500;
-    }
-
-    .baş-harfler-büyük {
-      text-transform: capitalize;
-    }
-
     .container {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -50,7 +42,14 @@
           <label for="ürün_türü">Ürün Türü:</label>
           <input type="text" v-model="ürün_türü">
         </li>
-        <li></li>
+        <li>
+          <label for="kumaş">Kumaş:</label>
+          <input type="text" v-model="kumaş">
+        </li>
+        <li>
+          <label for="ortam">Ortam:</label>
+          <input type="text" v-model="ortam">
+        </li>
         <li></li>
       </ul>
 
@@ -59,7 +58,7 @@
     <!--😊😊😊😊😊😊😊-->
     <div class="çıktı">
 
-      <h2 class="baş-harfler-büyük">{{marka}}'{{dAn}} bir {{ürün_türü}} daha</h2>
+      <h2>{{marka}}'{{dAn}} bir {{ürün_türü}} daha</h2>
 
       <h3>Açıklama</h3>
 
@@ -69,8 +68,8 @@
         kullanabileceğiniz bir parça.
       </p>
 
-      <h3><b>Kumaş:</b> {{kumaş}}</h3>
-      <h4>Kumaşın avantajları</h4>
+      <h3>Kumaş: <span style="font-weight: 500;">{{kumaş}}</span></h3>
+      <h4>%100 Pamuk Kumaşın Avantajları</h4>
       <ul>
         <li>
           <b>Doğal ve Soluk Aldırabilir:</b>
