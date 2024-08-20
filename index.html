@@ -7,9 +7,10 @@
   <title>Deneme</title>
   <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
   <style>
-    body{
+    body {
       padding: 20px;
     }
+
     h3:has(b) {
       font-weight: 500;
     }
@@ -58,7 +59,7 @@
     <!--😊😊😊😊😊😊😊-->
     <div class="çıktı">
 
-      <h2 class="baş-harfler-büyük">{{marka}}'den bir {{ürün_türü}} daha</h2>
+      <h2 class="baş-harfler-büyük">{{marka}}'{{dAn}} bir {{ürün_türü}} daha</h2>
 
       <h3>Açıklama</h3>
 
@@ -68,7 +69,7 @@
         kullanabileceğiniz bir parça.
       </p>
 
-      <h3><b>Kumaş:</b> a{{kumaş}}</h3>
+      <h3><b>Kumaş:</b> {{kumaş}}</h3>
       <h4>Kumaşın avantajları</h4>
       <ul>
         <li>
@@ -86,15 +87,34 @@
   </div>
 
   <script>
-    const { createApp, ref } = Vue
+    const { createApp, ref, computed } = Vue
 
     createApp({
-      data() {
-        return {
-          marka: '...',
-          ürün_türü: '...',
-          ürün_adı: ''
-        }
+      setup() {
+                const marka = ref('...');
+                const ürün_türü = ref('...');
+                const ürün_adı = ref('...');
+                const ortam = ref('...'); // Varsayalım ki ortam gibi diğer değişkenler de mevcut
+                const kumaş = ref('...');
+
+                const dAn = computed(() => {
+                    if (!marka.value) return '';
+
+                    const lastVowel = getLastVowel(marka.value);
+                    if (!lastVowel) return marka.value;
+
+                    const vowel = lastVowel.toLowerCase();
+                    const suffix = ['a', 'ı', 'o', 'u'].includes(vowel) ? 'dan' : 'den';
+
+                    return suffix;
+                });
+
+                function getLastVowel(text) {
+                    const match = text.match(/[aeıioöuü]/g);
+                    return match ? match[match.length - 1] : null;
+                }
+
+                return { marka, ürün_türü, ürün_adı, ortam, kumaş, dAn };
       }
     }).mount('#app')
   </script>
