@@ -1,18 +1,103 @@
-<html>
-<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+<!DOCTYPE html>
+<html lang="tr">
 
-<div id="app">{{ message }}</div>
-
-<script>
-  const { createApp, ref } = Vue
-
-  createApp({
-    setup() {
-      const message = ref('Hello vue!')
-      return {
-        message
-      }
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Deneme</title>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <style>
+    body{
+      padding: 20px;
     }
-  }).mount('#app')
-</script>
+    h3:has(b) {
+      font-weight: 500;
+    }
+
+    .baş-harfler-büyük {
+      text-transform: capitalize;
+    }
+
+    .container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr;
+      gap: 0px 0px;
+      grid-template-areas:
+        "girdi çıktı";
+    }
+
+    .girdi {
+      grid-area: girdi;
+    }
+
+    .çıktı {
+      grid-area: çıktı;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app" class="container">
+    <div class="girdi">
+      <ul style="display: flex; flex-direction: column; gap:20px;">
+        <li>
+          <label for="marka">Marka:</label>
+          <input type="text" v-model="marka">
+        </li>
+        <li>
+          <label for="ürün_türü">Ürün Türü:</label>
+          <input type="text" v-model="ürün_türü">
+        </li>
+        <li></li>
+        <li></li>
+      </ul>
+
+
+    </div>
+    <!--😊😊😊😊😊😊😊-->
+    <div class="çıktı">
+
+      <h2 class="baş-harfler-büyük">{{marka}}'den bir {{ürün_türü}} daha</h2>
+
+      <h3>Açıklama</h3>
+
+      <p>Tarzınızı ve rahatlığınızı ön planda tutan {{ürün_adı}}, {{ortam}} ortamlarda
+        giydiğiniz ilk sıralardaki giysiniz olacak. Şıklığı ve rahatlığı bir arada sunan
+        bu tişört, nitelikli kumaşı ve çağdaş tasarımı ile hem spor hem de şık kombinlerinizde rahatlıkla
+        kullanabileceğiniz bir parça.
+      </p>
+
+      <h3><b>Kumaş:</b> a{{kumaş}}</h3>
+      <h4>Kumaşın avantajları</h4>
+      <ul>
+        <li>
+          <b>Doğal ve Soluk Aldırabilir:</b>
+          %100 pamuk kumaş, doğal liflerden üretildiği için cildiniz ile eksiksiz uyum sağlar.
+          Soluk aldırabilen yapısı, teri hızlıca emerek sizi serin ve kuru tutar.
+        </li>
+      </ul>
+      <textarea disabled="true" style="width: 100%; min-height:500px; none;background-color:white;">
+
+      </textarea>
+
+    </div>
+
+  </div>
+
+  <script>
+    const { createApp, ref } = Vue
+
+    createApp({
+      data() {
+        return {
+          marka: '...',
+          ürün_türü: '...',
+          ürün_adı: ''
+        }
+      }
+    }).mount('#app')
+  </script>
+</body>
+
 </html>
